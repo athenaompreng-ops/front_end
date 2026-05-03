@@ -1,0 +1,136 @@
+/* ============================================
+   ATHENA Design System — Global Styles
+   ============================================ */
+
+/* CSS Custom Properties */
+:root {
+  /* Core palette */
+  --athena-bg: #0A0E17;
+  --athena-bg-elevated: #111827;
+  --athena-bg-card: #141B2D;
+  --athena-bg-card-hover: #1A2340;
+  --athena-surface: #1E293B;
+
+  /* Brand colors */
+  --athena-gold: #FFFFFF;
+  --athena-gold-light: #E2E8F0;
+  --athena-gold-dim: rgba(255, 255, 255, 0.15);
+  --athena-gold-glow: rgba(255, 255, 255, 0.3);
+  --athena-blue: #FFFFFF;
+  --athena-blue-glow: rgba(255, 255, 255, 0.2);
+  --athena-purple: #FFFFFF;
+
+  /* Text */
+  --athena-text-primary: #F1F5F9;
+  --athena-text-secondary: #94A3B8;
+  --athena-text-muted: #64748B;
+  --athena-text-dim: #475569;
+
+  /* Borders */
+  --athena-border: rgba(255, 255, 255, 0.06);
+  --athena-border-hover: rgba(255, 255, 255, 0.12);
+  --athena-border-gold: rgba(201, 168, 76, 0.25);
+
+  /* Typography */
+  --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Spacing */
+  --nav-height: 64px;
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Lenis smooth scroll overrides */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: #000;
+  color: var(--athena-text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Selection */
+::selection {
+  background: var(--athena-gold-dim);
+  color: var(--athena-gold-light);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--athena-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--athena-text-dim);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--athena-text-muted);
+}
