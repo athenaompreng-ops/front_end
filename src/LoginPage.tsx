@@ -15,7 +15,7 @@ export default function LoginPage() {
     setTimeout(() => {
       localStorage.setItem('athena_user', JSON.stringify({ email }))
       setLoading(false)
-      window.location.href = '/'
+      window.location.href = '/dashboard'
     }, 800)
   }
 

@@ -81,7 +81,7 @@ export default function LightRays({
   const animationIdRef = useRef<number | null>(null);
   const meshRef = useRef<any>(null);
   const cleanupFunctionRef = useRef<(() => void) | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const isVisibleRef = useRef(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
 
@@ -90,7 +90,7 @@ export default function LightRays({
     observerRef.current = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
-        setIsVisible(entry.isIntersecting);
+        isVisibleRef.current = entry.isIntersecting;
       },
       { threshold: 0.1 }
     );
@@ -104,11 +104,7 @@ export default function LightRays({
   }, []);
 
   useEffect(() => {
-    if (!isVisible || !containerRef.current) return;
-    if (cleanupFunctionRef.current) {
-      cleanupFunctionRef.current();
-      cleanupFunctionRef.current = null;
-    }
+    if (!containerRef.current) return;
     const initializeWebGL = async () => {
       if (!containerRef.current) return;
       await new Promise((resolve) => setTimeout(resolve, 10));
@@ -260,6 +256,13 @@ export default function LightRays({
       handleResize();
       const loop = (t: number) => {
         if (!rendererRef.current || !uniformsRef.current || !meshRef.current) return;
+        
+        // PAUSE if not visible
+        if (!isVisibleRef.current) {
+          animationIdRef.current = requestAnimationFrame(loop);
+          return;
+        }
+
         uniforms.iTime.value = t * 0.001;
         if (followMouse && mouseInfluence > 0) {
           const smoothing = 0.92;
@@ -305,7 +308,7 @@ export default function LightRays({
         cleanupFunctionRef.current = null;
       }
     };
-  }, [isVisible, raysOrigin]);
+  }, [raysOrigin]); // Removed isVisible from dependency array to prevent context destruction
 
   useEffect(() => {
     if (!uniformsRef.current || !containerRef.current || !rendererRef.current || !meshRef.current)

@@ -17,6 +17,7 @@ import './App.css'
 gsap.registerPlugin(ScrollTrigger)
 
 const LoginPage = lazy(() => import('./LoginPage'))
+const DashboardPage = lazy(() => import('./DashboardPage'))
 
 /* ============================================
    Scroll-animated wrapper
@@ -403,8 +404,16 @@ function App() {
       <Route
         path="/login"
         element={
-          <Suspense fallback={<div style={{ minHeight: '100vh', background: '#f8f9fa' }} />}>
+          <Suspense fallback={<div style={{ minHeight: '100vh', background: 'var(--bg-primary)' }} />}>
             <LoginPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/dashboard"
+        element={
+          <Suspense fallback={<div style={{ minHeight: '100vh', background: 'var(--bg-primary)' }} />}>
+            <DashboardPage />
           </Suspense>
         }
       />

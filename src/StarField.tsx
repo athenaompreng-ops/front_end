@@ -58,10 +58,7 @@ export default function StarField() {
     // Animation loop
     let lastTime = 0
     const draw = (timestamp: number) => {
-      if (!visibleRef.current) {
-        animIdRef.current = requestAnimationFrame(draw)
-        return
-      }
+      if (!visibleRef.current) return // BREAK LOOP COMPLETELY
 
       const dt = Math.min((timestamp - lastTime) / 1000, 0.1)
       lastTime = timestamp
@@ -135,8 +132,15 @@ export default function StarField() {
 
     // Visibility observer — pause when off-screen
     const observer = new IntersectionObserver(
-      ([entry]) => { visibleRef.current = entry.isIntersecting },
-      { threshold: 0.1 }
+      ([entry]) => {
+        const wasVisible = visibleRef.current
+        visibleRef.current = entry.isIntersecting
+        if (!wasVisible && entry.isIntersecting) {
+          lastTime = performance.now()
+          animIdRef.current = requestAnimationFrame(draw)
+        }
+      },
+      { threshold: 0 }
     )
     observer.observe(canvas)
 

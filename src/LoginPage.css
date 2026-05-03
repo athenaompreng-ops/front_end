@@ -8,12 +8,14 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: var(--bg-primary);
+  transition: background 0.4s ease;
 }
 
 .auth-container {
   width: 100%;
   max-width: 420px;
+  z-index: 10;
 }
 
 .auth-logo {
@@ -29,43 +31,43 @@
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: #000;
+  background: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
   font-weight: 800;
-  color: #fff;
+  color: var(--bg-primary);
   letter-spacing: -0.5px;
 }
 
 .auth-logo-text {
   font-size: 28px;
   font-weight: 700;
-  color: #000;
+  color: var(--text-primary);
   letter-spacing: -1px;
 }
 
 .auth-card {
-  background: #fff;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
   border-radius: 20px;
   padding: 40px 32px;
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.08),
-    0 8px 32px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 32px var(--nav-shadow);
+  transition: background 0.4s ease, border-color 0.4s ease;
 }
 
 .auth-title {
   font-size: 24px;
   font-weight: 700;
-  color: #111;
+  color: var(--text-primary);
   text-align: center;
   margin-bottom: 6px;
 }
 
 .auth-subtitle {
   font-size: 14px;
-  color: #666;
+  color: var(--text-muted);
   text-align: center;
   margin-bottom: 28px;
 }
@@ -84,20 +86,20 @@
   justify-content: center;
   gap: 8px;
   padding: 12px;
-  border: 2px solid #e8e8e8;
+  border: 1px solid var(--border-subtle);
   border-radius: 12px;
-  background: #fff;
+  background: var(--card-bg);
   font-size: 13px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: inherit;
 }
 
 .auth-social-btn:hover {
-  border-color: #ccc;
-  background: #f9f9f9;
+  border-color: var(--border-hover);
+  background: var(--hover-bg);
 }
 
 /* Divider */
@@ -114,15 +116,15 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: #e8e8e8;
+  background: var(--border-subtle);
 }
 
 .auth-divider span {
   position: relative;
   padding: 0 16px;
-  background: #fff;
+  background: var(--bg-elevated);
   font-size: 13px;
-  color: #999;
+  color: var(--text-muted);
 }
 
 /* Form */
@@ -136,48 +138,49 @@
   display: block;
   font-size: 13px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
   margin-bottom: 6px;
 }
 
 .auth-field input {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid #e8e8e8;
+  border: 1px solid var(--border-subtle);
   border-radius: 12px;
   font-size: 15px;
   font-family: inherit;
-  color: #111;
+  color: var(--text-primary);
   outline: none;
-  transition: border-color 0.2s ease;
-  background: #fff;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  background: var(--card-bg);
 }
 
 .auth-field input::placeholder {
-  color: #bbb;
+  color: var(--text-muted);
 }
 
 .auth-field input:focus {
-  border-color: #111;
+  border-color: var(--border-hover);
+  background: var(--hover-bg);
 }
 
 .auth-submit {
   width: 100%;
   padding: 14px;
-  background: #000;
-  color: #fff;
+  background: var(--text-primary);
+  color: var(--bg-primary);
   border: none;
   border-radius: 12px;
   font-size: 15px;
   font-weight: 600;
   font-family: inherit;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: opacity 0.2s ease;
   margin-top: 4px;
 }
 
 .auth-submit:hover {
-  background: #222;
+  opacity: 0.85;
 }
 
 .auth-submit:disabled {
@@ -190,13 +193,13 @@
   text-align: center;
   margin-top: 24px;
   font-size: 14px;
-  color: #666;
+  color: var(--text-muted);
 }
 
 .auth-toggle button {
   background: none;
   border: none;
-  color: #000;
+  color: var(--text-primary);
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
@@ -212,17 +215,17 @@
   text-align: center;
   margin-top: 28px;
   font-size: 12px;
-  color: #999;
+  color: var(--text-muted);
   line-height: 1.6;
 }
 
 .auth-footer a {
-  color: #666;
+  color: var(--text-secondary);
   text-decoration: underline;
 }
 
 .auth-footer a:hover {
-  color: #333;
+  color: var(--text-primary);
 }
 
 @media (max-width: 480px) {
